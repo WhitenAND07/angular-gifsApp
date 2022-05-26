@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { GifsService } from '../services/gifs.service';
 
 @Component({
   selector: 'app-search-gifs',
@@ -6,16 +7,16 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class SearchGIFsComponent {
 
-  constructor() {}
-
   //https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-0.html#non-null-assertion-operator
-  @ViewChild('txtBuscar') txtBuscar!: ElementRef<HTMLInputElement>;
+  @ViewChild('txtSearch') txtSearch!: ElementRef<HTMLInputElement>;
+
+  constructor(private gifsService: GifsService) {}
 
   search(){
-    const valor: string = this.txtBuscar.nativeElement.value;
+    const valor = this.txtSearch.nativeElement.value;
 
-    console.log(valor);
+    this.gifsService.buscarGIFs(valor);
 
-    this.txtBuscar.nativeElement.value = '';
+    this.txtSearch.nativeElement.value = '';
   }
 }
