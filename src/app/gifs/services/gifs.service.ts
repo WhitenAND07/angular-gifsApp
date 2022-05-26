@@ -14,7 +14,13 @@ export class GifsService {
   constructor() {}
 
   buscarGIFs(valorSearch: string){
-    this._historial.unshift(valorSearch);
-  }
+    if (valorSearch.trim().length === 0) {return;}
 
+    valorSearch = valorSearch.trim().toLowerCase();
+
+    if(!this._historial.includes(valorSearch)){
+      this._historial.unshift(valorSearch);
+      this._historial = this._historial.splice(0,10);
+    }
+  }
 }
