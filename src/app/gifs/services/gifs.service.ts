@@ -8,6 +8,8 @@ export class GifsService {
   private apiKey : string = '5O6GCOtBO8698RPaBjwz6OHTBvahIPtG';
   private _historial: string[] = [];
   
+  public resultados: any[] = [];
+
   get historial(){
     return [...this._historial];
   }
@@ -24,9 +26,9 @@ export class GifsService {
       this._historial = this._historial.splice(0,10);
     }
   
-    this.http.get('https://api.giphy.com/v1/gifs/search?api_key=5O6GCOtBO8698RPaBjwz6OHTBvahIPtG&q=andorra&limit=10')
-      .subscribe((response: any) => {
-        console.log(response.data);
+    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=5O6GCOtBO8698RPaBjwz6OHTBvahIPtG&q=${valorSearch}&limit=10`)
+      .subscribe((resp: any) => {
+        this.resultados = resp.data;
       });
   }
 }
