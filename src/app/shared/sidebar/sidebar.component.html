@@ -4,9 +4,11 @@
 
     <div class="list-group list-reset">
         <a 
+            *ngFor="let valorSearch of historial"
+            (click)="buscar(valorSearch)"
+            
             href="#"
-            class="list-group-item list-group-item-action"
-            *ngFor="let valorSearch of historial">
+            class="list-group-item list-group-item-action">
             {{valorSearch | titlecase}}
         </a>
     </div>
